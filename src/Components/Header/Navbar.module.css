@@ -1,0 +1,17 @@
+.nav {
+  background-image: linear-gradient(
+    to left,
+    #dbdcd7 0%,
+    #f1eac7 24%,
+    #f5adb5 30%,
+    #e7627d 46%,
+    #b8235a 59%,
+    #801357 71%,
+    #3d1635 84%,
+    #1c1a27 100%
+  );
+  color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  padding: 2% !important;
+}
