@@ -8,12 +8,10 @@ import {
   NavItem,
   Button,
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import style from "./Navbar.module.css";
+import Header from "./Header";
 import fire from "../../Config/Fire";
-
-// import { NavLink } from "react-router-dom";
-
 class Navigation extends Component {
   constructor(props) {
     super(props);
@@ -37,58 +35,51 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        <Navbar dark expand="md" className={style.nav}>
+        <Navbar dark expand="md" className={style.nav} fixed="top">
           <div className="container">
-            <Link to="/">
-              <NavbarBrand className="mr-auto ">
-                <i class="fas fa-hand-holding-water"></i> Blood Bank
-              </NavbarBrand>
-            </Link>
-            <NavbarToggler onClick={this.toggleNav} />
+            <NavbarBrand className="mr-1 ">
+              Blood Bank
+              {/* <img src="Assets/Images/logo.png" alt="Logo" height="50px" /> */}
+            </NavbarBrand>
 
+            <NavbarToggler onClick={this.toggleNav} />
             <Collapse isOpen={this.state.isNavOpen} navbar>
               <Nav navbar p-5>
-                <Link to="/home">
-                  <NavItem>
-                    <span className="nav-link" to="/home">
-                      <span className="fa fa-home fa-lg"></span> Home
-                    </span>
-                  </NavItem>
-                </Link>
-                <Link to="/aboutus">
-                  <NavItem>
-                    <Link className="nav-link" to="/aboutus">
-                      <span className="fa fa-info fa-lg"></span> About Us
-                    </Link>
-                  </NavItem>
-                </Link>
-                {/*                 
                 <NavItem>
-                  <span className="nav-link" to="/menu">
-                    <span className="fa fa-list fa-lg"></span> Menu
-                  </span>
-                </NavItem> */}
-                <Link to="/contact">
-                  <NavItem>
-                    <span className="nav-link" to="/contactus">
-                      <span className="fa fa-address-card fa-lg"></span> Contact
-                      Us
-                    </span>
-                  </NavItem>
-                </Link>
+                  <NavLink className="nav-link" to="/home">
+                    <span className="fa fa-home fa-lg"></span> Home
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className="nav-link" to="/about">
+                    <span className="fa fa-info fa-lg"></span> About Us
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className="nav-link" to="/donors">
+                    <span className="fa fa-give fa-lg"></span> our Donors
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink className="nav-link" to="/contact">
+                    <span className="fa fa-address-card fa-lg"></span> Contact
+                    Us
+                  </NavLink>
+                </NavItem>
               </Nav>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <Link to="/login">
+                  <NavLink to="/">
                     <Button outline onClick={this.handleLogin}>
                       <span className="fa fa-sign-in fa-lg"></span> Login
                     </Button>
-                  </Link>
+                  </NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
           </div>
         </Navbar>
+        <Header />
       </div>
     );
   }

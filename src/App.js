@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import MainComponent from "./Components/MainComponent";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import style from "./App.module.css";
+
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <MainComponent />
-        </div>
-      </BrowserRouter>
+      // <Provider store={store}>
+      <Router>
+        <MainComponent />
+      </Router>
+      // </Provider>
     );
   }
 }

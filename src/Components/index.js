@@ -1,6 +1,11 @@
 export { default as Navigation } from "./Header/Navbar";
+export { default as Welcome } from "./Welcome";
+export { default as Header } from "./Header/Header";
 export { default as Home } from "./Home/Home";
-export { default as About } from "./About/About";
+export { default as About } from "./About/About.js";
 export { default as Contact } from "./Contact/Contact";
 export { default as Login } from "./Authentication/Login";
-export { default as Welcome } from "./Welcome";
+export { default as FooterPage } from "./Footer/Footer";
+export { default as Donor } from "./Donors&Needy/Donor";
+export { default as Needy } from "./Donors&Needy/Needy";
+export { default as OurDonors } from "./OurDonors/OurDonors";

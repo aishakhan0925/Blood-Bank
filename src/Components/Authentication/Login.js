@@ -10,6 +10,9 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      error: {
+        message: "",
+      },
     };
     this.handleChange = this.handleChange.bind(this);
     this.login = this.login.bind(this);
@@ -19,6 +22,7 @@ class Login extends Component {
   //   =============Login method==================//
   login(e) {
     e.preventDefault();
+
     fire
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -61,12 +65,11 @@ class Login extends Component {
               <TextField
                 type="email"
                 id="email"
+                value={this.state.email}
                 label="Email"
                 onChange={this.handleChange}
                 name="email"
-                value={this.state.email}
                 helperText="@Example : John@abc.com"
-                // innerRef={(input) => (this.username = input)}
               />
             </FormGroup>
             <FormGroup>
@@ -77,23 +80,15 @@ class Login extends Component {
                 value={this.state.password}
                 id="password"
                 onChange={this.handleChange}
+                // onChange={(eve) =>
+                //   this.setState({ password: eve.target.value })
+                // }
                 helperText="@Example : abcd1234@_"
-                // innerRef={(input) => (this.password = input)}
               />
             </FormGroup>
             <br />
             <br />
-            {/* <FormGroup check>
-              <Label check>
-                <Input
-                  important
-                  type="checkbox"
-                  name="remember"
-                  innerRef={(input) => (this.remember = input)}
-                />
-                Remember
-              </Label>
-            </FormGroup> */}
+
             <Button
               variant="contained"
               color="primary"
@@ -119,4 +114,6 @@ class Login extends Component {
     );
   }
 }
+//======================================Redux Code-================================
+
 export default Login;

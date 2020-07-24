@@ -11,12 +11,22 @@
     "bootstrap": "^4.5.0",
     "firebase": "^7.16.1",
     "firebase-tools": "^8.6.0",
+    "material-table": "^1.66.0",
+    "mdbreact": "^4.27.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.2.2",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-redux-form": "^1.16.14",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "reactstrap": "^8.5.1"
+    "react-slideshow-image": "^2.0.2",
+    "react-spring": "^8.0.27",
+    "reactstrap": "^8.5.1",
+    "redux": "^4.0.5",
+    "redux-form": "^8.3.6",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

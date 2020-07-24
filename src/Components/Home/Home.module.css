@@ -1,0 +1,15 @@
+.btn {
+  background-image: linear-gradient(
+    to left,
+    #f6919d 30%,
+    #e7627d 46%,
+    #b8235a 59%,
+    #801357 71%
+  );
+  border-radius: 50% !important;
+  color: white !important;
+  width: 150px !important;
+  height: 50px !important;
+  margin: 10px 20px 10px !important;
+  outline: none;
+}
