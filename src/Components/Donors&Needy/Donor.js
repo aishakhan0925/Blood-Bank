@@ -61,21 +61,6 @@ class Donor extends Component {
   }
   handleSubmit(values, e) {
     // e.preventDefault();
-    // const {
-    //   firstname,
-    //   lastname,
-    //   telnum,
-    //   email,
-    //   agree,
-    //   contactType,
-    //   bloodGroup,
-    //   city,
-    //   country,
-    //   age,
-    //   keyValue,
-    //   key,
-    // } = this.state;
-
     this.setState({
       firstname: "",
       lastname: "",
@@ -87,19 +72,20 @@ class Donor extends Component {
       age: "",
       keyValue: 0,
     });
-    alert(
-      "current Value is : " +
-        this.state.firstname +
-        this.state.lastname +
-        this.state.telnum +
-        this.state.email +
-        this.state.agree +
-        this.state.contactType +
-        this.state.bloodGroup +
-        this.state.city +
-        this.state.country +
-        this.state.age
+
+    this.props.AddDonor(
+      values.firstname +
+        values.lastname +
+        values.telnum +
+        values.agree +
+        values.contactType +
+        values.bloodGroup +
+        values.email +
+        values.city +
+        values.country +
+        values.age
     );
+   
   }
 
   render() {
@@ -113,7 +99,7 @@ class Donor extends Component {
         </Breadcrumb>
         <div className="row">
           <div className="col-12 col-md-9">
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
               <Row className="form-group">
                 <Label
                   htmlFor="firstname"
@@ -124,6 +110,7 @@ class Donor extends Component {
                 </Label>
                 <Col md={10}>
                   <TextField
+                    name="firstname"
                     value={this.state.firstname}
                     id="firstname"
                     label="First Name"
@@ -396,7 +383,7 @@ class Donor extends Component {
                   <Button
                     type="submit"
                     color="red"
-                    onClick={(values) => this.handleSubmit(values)}
+                    // onClick={(values) => this.handleSubmit(values)}
                   >
                     Donate Now
                   </Button>
@@ -410,6 +397,6 @@ class Donor extends Component {
   }
 }
 
-// ============================================Redux Code==================================
-
 export default Donor;
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Donor);
