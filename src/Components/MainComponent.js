@@ -71,27 +71,29 @@ class MainComponent extends Component {
   }
   routes() {
     return (
-      <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/contact" component={Contact} />
-        <Route
-          exact
-          path="/donor"
-          component={() => <Donor AddDonor={this.props.AddDonor} />}
-        />
-        <Route exact path="/needy" component={Needy} />
-        <Route exact path="/donors" component={OurDonors} />
-
-        <Redirect to="/home" />
-      </Switch>
+      <>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/contact" component={Contact} />
+          <Route
+            exact
+            path="/donor"
+            component={() => <Donor AddDonor={this.props.AddDonor} />}
+          />
+          <Route exact path="/needy" component={Needy} />
+          <Route exact path="/donors" component={OurDonors} />
+          <Redirect to="/home" />
+        </Switch>
+      </>
     );
   }
   render() {
     return (
       <div>
         <Navigation />
+
         {this.state.user ? this.routes() : <Login />}
         <FooterPage />
       </div>

@@ -61,17 +61,6 @@ class Donor extends Component {
   }
   handleSubmit(values, e) {
     // e.preventDefault();
-    this.setState({
-      firstname: "",
-      lastname: "",
-      telnum: "",
-      email: "",
-      bloodGroup: "",
-      city: " ",
-      country: "",
-      age: "",
-      keyValue: 0,
-    });
 
     this.props.AddDonor(
       values.firstname +
@@ -85,7 +74,17 @@ class Donor extends Component {
         values.country +
         values.age
     );
-   
+    this.setState({
+      firstname: "",
+      lastname: "",
+      telnum: "",
+      email: "",
+      bloodGroup: "",
+      city: " ",
+      country: "",
+      age: "",
+      keyValue: 0,
+    });
   }
 
   render() {

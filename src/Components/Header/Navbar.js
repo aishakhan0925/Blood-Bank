@@ -67,7 +67,7 @@ class Navigation extends Component {
                   </NavLink>
                 </NavItem>
               </Nav>
-              <Nav className="ml-auto" navbar>
+              {/* <Nav className="ml-auto" navbar>
                 <NavItem>
                   <NavLink to="/">
                     <Button outline onClick={this.handleLogin}>
@@ -75,7 +75,7 @@ class Navigation extends Component {
                     </Button>
                   </NavLink>
                 </NavItem>
-              </Nav>
+              </Nav> */}
             </Collapse>
           </div>
         </Navbar>
