@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,20 +7,25 @@ import {
   Row,
   Button,
   Form,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 import style from "./Donor.module.css";
 import {
   TextField,
   FormControlLabel,
   Checkbox,
-  Select,
   MenuItem,
-  InputLabel,
+  Select,
 } from "@material-ui/core";
+import fire from "../../Config/Fire";
+import * as firebase from "firebase";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import { Link } from "react-router-dom";
-import { Errors } from "react-redux-form";
+// import { browserHistory } from "react-router";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -32,62 +37,91 @@ const validEmail = (val) =>
 class Donor extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       firstname: "",
       lastname: "",
-      telnum: "",
       email: "",
-      bloodGroup: "",
-      city: " ",
+      telnum: "",
       country: "",
+      city: "",
       age: "",
-      key: 0,
-      keyValue: 0,
+      bloodGroup: "",
       agree: false,
-      contactType: "Tel.",
-      touched: {
-        firstname: false,
-        lastname: false,
-        telnum: false,
-        email: false,
-        bloodGroup: false,
-        city: false,
-        country: false,
-        age: false,
-      },
+      isModelOpen: false,
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.ModalExample = this.ModalExample.bind(this);
   }
-  handleSubmit(values, e) {
-    // e.preventDefault();
 
-    this.props.AddDonor(
-      values.firstname +
-        values.lastname +
-        values.telnum +
-        values.agree +
-        values.contactType +
-        values.bloodGroup +
-        values.email +
-        values.city +
-        values.country +
-        values.age
-    );
+  handleSubmit(e) {
+    e.preventDefault();
+    const newDonor = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      telnum: this.state.telnum,
+      email: this.state.email,
+      country: this.state.country,
+      city: this.state.city,
+      bloodGroup: this.state.bloodGroup,
+      agree: this.state.agree,
+    };
+    console.log(newDonor);
+    // Adding Data to firebase firestore
+    // let newDonorData = fire
+    //   .database()
+    //   .ref("NewDonor")
+    //   .orderByKey()
+    //   .limitToLast(1000);
+    // fire.database().ref("NewDonor").push(this.state.firstname);
+    // Input fields blank again
     this.setState({
       firstname: "",
       lastname: "",
-      telnum: "",
       email: "",
-      bloodGroup: "",
-      city: " ",
+      telnum: "",
       country: "",
+      city: "",
       age: "",
-      keyValue: 0,
+      bloodGroup: "",
+      agree: false,
     });
+    ModalExample();
   }
 
   render() {
+    const ModalExample = (props) => {
+      const { buttonLabel, className } = props;
+
+      const [modal, setModal] = useState(false);
+
+      const toggle = () => setModal(!modal);
+
+      return (
+        <div>
+          <Modal isOpen={modal} toggle={toggle} className={className}>
+            <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+            <ModalBody>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={toggle}>
+                Do Something
+              </Button>{" "}
+              <Button color="secondary" onClick={toggle}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Modal>
+        </div>
+      );
+    };
     return (
       <div className="container p-5 ">
         <Breadcrumb>
@@ -110,7 +144,8 @@ class Donor extends Component {
                 <Col md={10}>
                   <TextField
                     name="firstname"
-                    value={this.state.firstname}
+                    value={this.state.fisrtname}
+                    required="required"
                     id="firstname"
                     label="First Name"
                     placeholder="Enter Your First Name"
@@ -128,7 +163,6 @@ class Donor extends Component {
                     onChange={(e) =>
                       this.setState({ firstname: e.target.value })
                     }
-                    required
                   />
                 </Col>
               </Row>
@@ -144,7 +178,6 @@ class Donor extends Component {
                   <TextField
                     value={this.state.lastname}
                     id="lastname"
-                    name="lastname"
                     placeholder="Enter Your Last Name"
                     helperText="E.g: Seena"
                     fullWidth
@@ -152,15 +185,15 @@ class Donor extends Component {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    required
-                    onChange={(e) =>
-                      this.setState({ lastname: e.target.value })
-                    }
+                    required="required"
                     validators={{
                       required,
                       minLength: minLength(3),
                       maxLength: maxLength(15),
                     }}
+                    onChange={(e) =>
+                      this.setState({ lastname: e.target.value })
+                    }
                   />
                 </Col>
               </Row>
@@ -175,6 +208,7 @@ class Donor extends Component {
                 <Col md={10}>
                   <TextField
                     value={this.state.telnum}
+                    type="number"
                     id="telnum"
                     name="telnum"
                     helperText="E.g: 12345678910"
@@ -184,14 +218,14 @@ class Donor extends Component {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    required
-                    onChange={(e) => this.setState({ telnum: e.target.value })}
+                    required="required"
                     validators={{
                       required,
                       minLength: minLength(3),
                       maxLength: maxLength(15),
                       isNumber,
                     }}
+                    onChange={(e) => this.setState({ telnum: e.target.value })}
                   />
                 </Col>
               </Row>
@@ -206,13 +240,13 @@ class Donor extends Component {
                 <Col md={10}>
                   <TextField
                     value={this.state.email}
+                    type="email"
                     id="email"
                     name="email"
                     placeholder="Enter Your Email"
                     helperText="E.g: John@seena.com"
                     fullWidth
-                    required
-                    onChange={(e) => this.setState({ email: e.target.value })}
+                    required="required"
                     margin="normal"
                     InputLabelProps={{
                       shrink: true,
@@ -221,12 +255,13 @@ class Donor extends Component {
                       required,
                       validEmail,
                     }}
+                    onChange={(e) => this.setState({ email: e.target.value })}
                   />
                 </Col>
               </Row>
               <Row className="form-group">
                 <Label
-                  htmlFor="email"
+                  htmlFor="country"
                   md={2}
                   className="font-weight-bold text-muted"
                 >
@@ -235,63 +270,23 @@ class Donor extends Component {
                 <Col md={10}>
                   <TextField
                     value={this.state.country}
+                    type="text"
                     id="country"
                     name="country"
                     placeholder="Enter Your Country"
                     helperText="E.g: Pakistan"
                     fullWidth
-                    required
+                    required="required"
+                    margin="normal"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    validators={{
+                      required,
+                      validEmail,
+                    }}
                     onChange={(e) => this.setState({ country: e.target.value })}
-                    margin="normal"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    validators={{
-                      required,
-                      validEmail,
-                    }}
                   />
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Label
-                  htmlFor="email"
-                  md={2}
-                  className="font-weight-bold text-muted"
-                >
-                  Blood Group
-                </Label>
-                <Col md={10}>
-                  <Select
-                    value={this.state.bloodGroup}
-                    id="bloodGroup"
-                    name="bloodGroup"
-                    placeholder="Select your Blood Group"
-                    helperText="E.g: Pakistan"
-                    fullWidth
-                    required
-                    onChange={(e) =>
-                      this.setState({ bloodGroup: e.target.value })
-                    }
-                    margin="normal"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    validators={{
-                      required,
-                      validEmail,
-                    }}
-                  >
-                    <MenuItem>Blood Type</MenuItem>
-                    <MenuItem value={"A+"}> A+</MenuItem>
-                    <MenuItem value={"B+"}>B+</MenuItem>
-                    <MenuItem value={"AB+"}>AB+</MenuItem>
-                    <MenuItem value={"A-"}>A-</MenuItem>
-                    <MenuItem value={"B-"}>B-</MenuItem>
-                    <MenuItem value={"AB-"}>AB-</MenuItem>
-                    <MenuItem value={"O+"}>O+</MenuItem>
-                    <MenuItem value={"O-"}>O-</MenuItem>
-                  </Select>
                 </Col>
               </Row>
               <Row className="form-group">
@@ -310,8 +305,7 @@ class Donor extends Component {
                     placeholder="Enter Your City"
                     helperText="E.g: Karachi"
                     fullWidth
-                    required
-                    onChange={(e) => this.setState({ city: e.target.value })}
+                    required="required"
                     margin="normal"
                     InputLabelProps={{
                       shrink: true,
@@ -320,27 +314,25 @@ class Donor extends Component {
                       required,
                       validEmail,
                     }}
+                    onChange={(e) => this.setState({ city: e.target.value })}
                   />
                 </Col>
               </Row>
               <Row className="form-group">
                 <Label
-                  htmlFor="age"
+                  htmlFor="email"
                   md={2}
                   className="font-weight-bold text-muted"
                 >
-                  Age
+                  Blood Group
                 </Label>
                 <Col md={10}>
-                  <TextField
-                    value={this.state.age}
-                    id="age"
-                    name="age"
-                    placeholder="Enter Your Age"
-                    helperText="E.g: 18"
+                  <Select
+                    value={this.state.bloodGroup}
+                    id="bloodGroup"
+                    name="bloodGroup"
                     fullWidth
-                    required
-                    onChange={(e) => this.setState({ age: e.target.value })}
+                    required="required"
                     margin="normal"
                     InputLabelProps={{
                       shrink: true,
@@ -349,9 +341,24 @@ class Donor extends Component {
                       required,
                       validEmail,
                     }}
-                  />
+                    onChange={(e) =>
+                      this.setState({ bloodGroup: e.target.value })
+                    }
+                  >
+                    <MenuItem disabled value={1} />
+                    Blood Type
+                    <MenuItem value={2}> A+</MenuItem>
+                    <MenuItem value={3}>B+</MenuItem>
+                    <MenuItem value={4}>AB+</MenuItem>
+                    <MenuItem value={5}>A-</MenuItem>
+                    <MenuItem value={6}>B-</MenuItem>
+                    <MenuItem value={7}>AB-</MenuItem>
+                    <MenuItem value={8}>O+</MenuItem>
+                    <MenuItem value={9}>O-</MenuItem>
+                  </Select>
                 </Col>
               </Row>
+
               <Row className="form-group">
                 <Col md={{ size: 6, offset: 2 }}>
                   <div className="form-check">
@@ -362,9 +369,6 @@ class Donor extends Component {
                         value={this.state.agree}
                         style={{ margin: "8px" }}
                         required
-                        onChange={(e) =>
-                          this.setState({ agree: e.target.value })
-                        }
                         control={
                           <Checkbox
                             icon={<FavoriteBorder />}
@@ -379,11 +383,7 @@ class Donor extends Component {
               </Row>
               <Row className="form-group">
                 <Col md={{ size: 12, offset: 5 }}>
-                  <Button
-                    type="submit"
-                    color="red"
-                    // onClick={(values) => this.handleSubmit(values)}
-                  >
+                  <Button type="submit" color="red">
                     Donate Now
                   </Button>
                 </Col>

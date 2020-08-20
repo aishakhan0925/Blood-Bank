@@ -52,6 +52,37 @@ class Home extends Component {
               </h4>
             </Typography>
           </Grid>
+          <div className={style.benifits} xs={12}>
+            <div className="row">
+              <div>
+                <Typography color="dark">
+                  <h1 className="mt-4">Benifits of Blood Donation</h1>
+                </Typography>
+                <div className="container">
+                  <div className={style.icons} xs={4}>
+                    <span className="fa fa-user-nurse fa-lg "></span>
+                    <h3>Reduce Stress</h3>
+                    <Typography>
+                      Donating blood has benefits for your emotional and
+                      physical health. According to a report by the Mental
+                      Health Foundation, helping others can: reduce stress.
+                      improve your emotional well-being.
+                    </Typography>
+                  </div>
+                  <div className={style.icons} xs={4}>
+                    <span className="fas fa-hand-holding-heart"></span>
+                    <h3>Emotional WELL-BEING</h3>
+                    <Typography>
+                      Donating blood can also improve your emotional health.
+                      According to the Mental Health Foundation, doing good for
+                      others is also good for your psyche. Among the many
+                      emotional benefits are: Reducing stress.
+                    </Typography>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <button onClick={this.signOut}>LogOut</button>

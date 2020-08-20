@@ -13,41 +13,41 @@ import {
   OurDonors,
 } from "./";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { AddDonor } from "../store/ActionCreators";
+// import { connect } from "react-redux";
+// import { AddDonor } from "../store/ActionCreators";
 // ============================================Redux Code==================================
 
-const mapStateToProps = (state) => {
-  return {
-    AddDonor: state.AddDonor,
-  };
-};
-const mapDispatchToProps = (dispatch) => ({
-  AddDonor: (
-    id,
-    firstname,
-    lastname,
-    email,
-    telnum,
-    age,
-    city,
-    country,
-    bloodGroup
-  ) =>
-    dispatch(
-      AddDonor(
-        id,
-        firstname,
-        lastname,
-        email,
-        telnum,
-        age,
-        city,
-        country,
-        bloodGroup
-      )
-    ),
-});
+// const mapStateToProps = (state) => {
+//   return {
+//     AddDonor: state.AddDonor,
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => ({
+//   AddDonor: (
+//     id,
+//     firstname,
+//     lastname,
+//     email,
+//     telnum,
+//     age,
+//     city,
+//     country,
+//     bloodGroup
+//   ) =>
+//     dispatch(
+//       AddDonor(
+//         id,
+//         firstname,
+//         lastname,
+//         email,
+//         telnum,
+//         age,
+//         city,
+//         country,
+//         bloodGroup
+//       )
+//     ),
+// });
 
 class MainComponent extends Component {
   constructor(props) {
@@ -73,7 +73,6 @@ class MainComponent extends Component {
     return (
       <>
         <Switch>
-          <Route exact path="/" component={Login} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
@@ -101,7 +100,7 @@ class MainComponent extends Component {
   }
 }
 
-// export default MainComponent;
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(MainComponent)
-);
+export default MainComponent;
+// export default withRouter(
+//   connect(mapStateToProps, mapDispatchToProps)(MainComponent)
+// );
