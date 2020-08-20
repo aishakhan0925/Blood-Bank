@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import fire from "../../Config/Fire";
+import all from "../../Config/Fire";
 import style from "./Login.module.css";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { Card, Typography, TextField, Grid, Button } from "@material-ui/core";
@@ -23,28 +23,28 @@ class Login extends Component {
   login(e) {
     e.preventDefault();
 
-    fire
+    all.fire
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
-        console.log(u);
+        // console.log(u);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
   //   =========Signup Method========/
   signup(e) {
     e.preventDefault();
-    fire
+    all.fire
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((u) => {
-        console.log(u);
+        // console.log(u);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
   //   ========Submit Method=========//

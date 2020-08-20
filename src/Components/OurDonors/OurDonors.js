@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
   Paper,
@@ -12,6 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { DONORS } from "../../Shared/donors";
+import all from "../../Config/Fire";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -39,6 +40,17 @@ const useStyles = makeStyles({
 export default function OurDonors() {
   const [state, setstate] = useState({ donor: DONORS });
   const classes = useStyles();
+  useEffect(() => {
+    console.log("mounted");
+    all.db
+      .collection("NewDonor")
+      .get()
+      .then((snapshot) => {
+        console.log(snapshot);
+      })
+      .catch((error) => console.log(error));
+  });
+
   return (
     <div className="container p-5 m-auto align-content-center justify-content-center">
       <Breadcrumb>

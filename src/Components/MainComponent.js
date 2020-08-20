@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import fire from "../Config/Fire";
+import all from "../Config/Fire";
 import {
   Navigation,
   Home,
@@ -58,7 +58,7 @@ class MainComponent extends Component {
   }
 
   authListner() {
-    fire.auth().onAuthStateChanged((user) => {
+    all.fire.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
       } else {

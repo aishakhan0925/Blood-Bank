@@ -51,7 +51,6 @@ class Donor extends Component {
       isModelOpen: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.ModalExample = this.ModalExample.bind(this);
   }
 
   handleSubmit(e) {
@@ -64,16 +63,15 @@ class Donor extends Component {
       country: this.state.country,
       city: this.state.city,
       bloodGroup: this.state.bloodGroup,
-      agree: this.state.agree,
     };
-    console.log(newDonor);
+    // console.log(newDonor);
     // Adding Data to firebase firestore
-    // let newDonorData = fire
-    //   .database()
-    //   .ref("NewDonor")
-    //   .orderByKey()
-    //   .limitToLast(1000);
-    // fire.database().ref("NewDonor").push(this.state.firstname);
+    let newDonorData = fire
+      .database()
+      .ref("NewDonor")
+      .orderByKey()
+      .limitToLast(1000);
+    fire.database().ref("NewDonor").push(newDonor);
     // Input fields blank again
     this.setState({
       firstname: "",
@@ -85,43 +83,11 @@ class Donor extends Component {
       age: "",
       bloodGroup: "",
       agree: false,
+      isModelOpen: true,
     });
-    ModalExample();
   }
 
   render() {
-    const ModalExample = (props) => {
-      const { buttonLabel, className } = props;
-
-      const [modal, setModal] = useState(false);
-
-      const toggle = () => setModal(!modal);
-
-      return (
-        <div>
-          <Modal isOpen={modal} toggle={toggle} className={className}>
-            <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-            <ModalBody>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={toggle}>
-                Do Something
-              </Button>{" "}
-              <Button color="secondary" onClick={toggle}>
-                Cancel
-              </Button>
-            </ModalFooter>
-          </Modal>
-        </div>
-      );
-    };
     return (
       <div className="container p-5 ">
         <Breadcrumb>
