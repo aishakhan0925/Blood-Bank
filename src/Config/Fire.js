@@ -13,7 +13,7 @@ var firebaseConfig = {
 
 const fire = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-const db = firebase.firestore();
+const db = firebase.database();
 
 const all = {
   fire: fire,

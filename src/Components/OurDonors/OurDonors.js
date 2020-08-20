@@ -38,19 +38,17 @@ const useStyles = makeStyles({
 });
 
 export default function OurDonors() {
-  const [state, setstate] = useState({ donor: DONORS });
+  const [state, setstate] = useState({ donor: [] });
   const classes = useStyles();
+
+  // Mounting Component
   useEffect(() => {
     console.log("mounted");
-    all.db
-      .collection("NewDonor")
-      .get()
-      .then((snapshot) => {
-        console.log(snapshot);
-      })
-      .catch((error) => console.log(error));
-  });
-
+    // Fetching Data from firebase realtime DB
+    all.db.ref("NewDonor").on("child_added", function (data) {
+      var DataFromDB = data.val();
+    });
+  }, [0]);
   return (
     <div className="container p-5 m-auto align-content-center justify-content-center">
       <Breadcrumb>
