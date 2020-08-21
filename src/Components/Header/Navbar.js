@@ -50,14 +50,14 @@ class Navigation extends Component {
                     <span className="fa fa-home fa-lg"></span> Home
                   </NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink className="nav-link" to="/about">
                     <span className="fa fa-info fa-lg"></span> About Us
                   </NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
                   <NavLink className="nav-link" to="/donors">
-                    <span className="fa fa-give fa-lg"></span> our Donors
+                    <span className="fa fa-info fa-lg"></span> Available Donors
                   </NavLink>
                 </NavItem>
                 <NavItem>

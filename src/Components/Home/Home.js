@@ -20,9 +20,15 @@ class Home extends Component {
             </BreadcrumbItem>
           </Breadcrumb>
         </div>
-        <div className="row p-5 bg-purple align-content-between justify-content-center">
+        <div className="row align-content-between justify-content-center">
           <Link to="/donor">
-            <Button className={style.btn}>Donate</Button>
+            <Button>
+              <img
+                src="Assets/Images/donate.png"
+                alt="DONATE"
+                className={style.btn}
+              />
+            </Button>
           </Link>
         </div>
         <div className="row mt-5 p-5">
@@ -47,7 +53,10 @@ class Home extends Component {
           </Grid>
         </div>
         <div className="row mt-5 p-5">
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
+            <img src="./Assets/Images/img5.png" alt="Image" />
+          </Grid>
+          <Grid item xs={12} md={4}>
             <Typography color="dark">
               <h1 className="text-align-center p-5">Save your Life</h1>
               <h4>
@@ -63,8 +72,8 @@ class Home extends Component {
               </h4>
             </Typography>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <img src="./Assets/Images/img6.png" alt="Image" />
+          <Grid item xs={12} md={4}>
+            <img src="./Assets/Images/img7.png" alt="Image" />
           </Grid>
         </div>
         <div className="row mt-5 text-center p-5">
@@ -95,9 +104,15 @@ class Home extends Component {
             </Typography>
           </Grid>
         </div>
-        <div className="row p-5 bg-purple align-content-between justify-content-center">
+        <div className="row p-3 align-content-between justify-content-center">
           <Link to="/donor">
-            <Button className={style.btn}>Donate Now</Button>
+            <Button>
+              <img
+                src="Assets/Images/donate2.png"
+                alt="DONATE"
+                style={{ width: "400px", height: "200px" }}
+              />
+            </Button>
           </Link>
         </div>
       </div>

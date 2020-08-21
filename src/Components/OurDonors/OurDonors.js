@@ -49,12 +49,11 @@ export default function OurDonors() {
     all.db.ref("NewDonor").on("child_added", (data) => {
       const DataFromDB = data.val();
       state.donor.push(DataFromDB);
-      // console.log(state.donor);
-      console.log(state.donor);
+      // console.log("test====>", DataFromDB);
       setState({
-        donor: DataFromDB,
+        donor: state.donor,
       });
-      return state;
+      return { ...state };
     });
   }, [0]);
 
@@ -80,7 +79,6 @@ export default function OurDonors() {
               <StyledTableCell align="center">Last Name</StyledTableCell>
               <StyledTableCell align="center">Email</StyledTableCell>
               <StyledTableCell align="center">Tel.</StyledTableCell>
-              <StyledTableCell align="center">Age</StyledTableCell>
               <StyledTableCell align="center">City</StyledTableCell>
               <StyledTableCell align="center">Country</StyledTableCell>
               <StyledTableCell align="center">Blood Group</StyledTableCell>
@@ -95,7 +93,6 @@ export default function OurDonors() {
                 <StyledTableCell align="center">{don.lastname}</StyledTableCell>
                 <StyledTableCell align="center">{don.email}</StyledTableCell>
                 <StyledTableCell align="center">{don.telnum}</StyledTableCell>
-                <StyledTableCell align="center">{don.age}</StyledTableCell>
                 <StyledTableCell align="center">{don.city}</StyledTableCell>
                 <StyledTableCell align="center">{don.country}</StyledTableCell>
                 <StyledTableCell align="center">

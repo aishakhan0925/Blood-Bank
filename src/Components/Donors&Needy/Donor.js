@@ -307,16 +307,16 @@ class Donor extends Component {
                       this.setState({ bloodGroup: e.target.value })
                     }
                   >
-                    <MenuItem disabled value={1} />
+                    <MenuItem disabled />
                     Blood Type
-                    <MenuItem value={2}> A+</MenuItem>
-                    <MenuItem value={3}>B+</MenuItem>
-                    <MenuItem value={4}>AB+</MenuItem>
-                    <MenuItem value={5}>A-</MenuItem>
-                    <MenuItem value={6}>B-</MenuItem>
-                    <MenuItem value={7}>AB-</MenuItem>
-                    <MenuItem value={8}>O+</MenuItem>
-                    <MenuItem value={9}>O-</MenuItem>
+                    <MenuItem value={"A+"}> A+</MenuItem>
+                    <MenuItem value={"B+"}>B+</MenuItem>
+                    <MenuItem value={"AB+"}>AB+</MenuItem>
+                    <MenuItem value={"A-"}>A-</MenuItem>
+                    <MenuItem value={"B-"}>B-</MenuItem>
+                    <MenuItem value={"AB-"}>AB-</MenuItem>
+                    <MenuItem value={"O+"}>O+</MenuItem>
+                    <MenuItem value={"O-"}>O-</MenuItem>
                   </Select>
                 </Col>
               </Row>

@@ -1,5 +1,6 @@
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+import { Button } from "reactstrap";
 import { Link, BrowserRouter as Router } from "react-router-dom";
 import all from "../../Config/Fire";
 
@@ -49,7 +50,7 @@ const FooterPage = () => {
             </ul>
           </MDBCol>
           <MDBCol md="2">
-            <button onClick={signOut}>LogOut</button>
+            <Button onClick={signOut}>Logout</Button>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
