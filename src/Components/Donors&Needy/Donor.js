@@ -20,7 +20,7 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
-import fire from "../../Config/Fire";
+import all from "../../Config/Fire";
 import * as firebase from "firebase";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
@@ -66,12 +66,8 @@ class Donor extends Component {
     };
     // console.log(newDonor);
     // Adding Data to firebase firestore
-    let newDonorData = fire
-      .database()
-      .ref("NewDonor")
-      .orderByKey()
-      .limitToLast(1000);
-    fire.database().ref("NewDonor").push(newDonor);
+    let newDonorData = all.db.ref("NewDonor").orderByKey().limitToLast(1000);
+    all.db.ref("NewDonor").push(newDonor);
     // Input fields blank again
     this.setState({
       firstname: "",

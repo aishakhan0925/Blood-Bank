@@ -38,17 +38,26 @@ const useStyles = makeStyles({
 });
 
 export default function OurDonors() {
-  const [state, setstate] = useState({ donor: [] });
+  const [state, setState] = useState({ donor: [] });
   const classes = useStyles();
 
   // Mounting Component
   useEffect(() => {
     console.log("mounted");
     // Fetching Data from firebase realtime DB
-    all.db.ref("NewDonor").on("child_added", function (data) {
-      var DataFromDB = data.val();
+
+    all.db.ref("NewDonor").on("child_added", (data) => {
+      const DataFromDB = data.val();
+      state.donor.push(DataFromDB);
+      // console.log(state.donor);
+      console.log(state.donor);
+      setState({
+        donor: DataFromDB,
+      });
+      return state;
     });
   }, [0]);
+
   return (
     <div className="container p-5 m-auto align-content-center justify-content-center">
       <Breadcrumb>
@@ -78,23 +87,19 @@ export default function OurDonors() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {state.donor.map((donor) => (
-              <StyledTableRow key={donor.id} align="center">
+            {state.donor.map((don) => (
+              <StyledTableRow key={don.id} align="center">
                 <StyledTableCell align="center">
-                  {donor.firstname}
+                  {don.firstname}
                 </StyledTableCell>
+                <StyledTableCell align="center">{don.lastname}</StyledTableCell>
+                <StyledTableCell align="center">{don.email}</StyledTableCell>
+                <StyledTableCell align="center">{don.telnum}</StyledTableCell>
+                <StyledTableCell align="center">{don.age}</StyledTableCell>
+                <StyledTableCell align="center">{don.city}</StyledTableCell>
+                <StyledTableCell align="center">{don.country}</StyledTableCell>
                 <StyledTableCell align="center">
-                  {donor.lastname}
-                </StyledTableCell>
-                <StyledTableCell align="center">{donor.email}</StyledTableCell>
-                <StyledTableCell align="center">{donor.telnum}</StyledTableCell>
-                <StyledTableCell align="center">{donor.age}</StyledTableCell>
-                <StyledTableCell align="center">{donor.city}</StyledTableCell>
-                <StyledTableCell align="center">
-                  {donor.country}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {donor.bloodGroup}
+                  {don.bloodGroup}
                 </StyledTableCell>
               </StyledTableRow>
             ))}
