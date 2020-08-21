@@ -48,9 +48,10 @@ class Donor extends Component {
       age: "",
       bloodGroup: "",
       agree: false,
-      isModelOpen: false,
+      isModalOpen: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   handleSubmit(e) {
@@ -79,10 +80,16 @@ class Donor extends Component {
       age: "",
       bloodGroup: "",
       agree: false,
-      isModelOpen: true,
+      // isModalOpen: true,
     });
+    this.toggleModal();
   }
 
+  toggleModal() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen,
+    });
+  }
   render() {
     return (
       <div className="container p-5 ">
@@ -351,6 +358,24 @@ class Donor extends Component {
                 </Col>
               </Row>
             </Form>
+            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+              <ModalHeader toggle={this.toggleModal}></ModalHeader>
+              <ModalBody>
+                <div className=" row text-center justify-content-center align-items-center d-flex">
+                  <h1>Thank You for Donation</h1>
+                  <img
+                    src="Assets/Images/ty.png"
+                    alt="ThankYOU"
+                    style={{ height: "400px" }}
+                  />
+                  <Link to="/home">
+                    <Button type="submit" color="red">
+                      Go Back to Home
+                    </Button>
+                  </Link>
+                </div>
+              </ModalBody>
+            </Modal>
           </div>
         </div>
       </div>
