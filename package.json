@@ -10,7 +10,7 @@
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.5.0",
     "firebase": "^7.16.1",
-    "firebase-tools": "^8.6.0",
+    "firebase-tools": "^13.6.0",
     "material-table": "^1.66.0",
     "mdbreact": "^4.27.0",
     "prop-types": "^15.7.2",
